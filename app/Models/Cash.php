@@ -11,17 +11,25 @@ class Cash extends Model
 
     protected $fillable = [
         'company_id',
-        'fecha_apertura',
-        'fecha_cierre',
-        'saldo_apertura',
-        'saldo_cierre',
-        'user_apertura_id',
-        'user_cierre_id',
-        'estado'
+        'user_id',
+        'nombre',
+        'monto',
+        'estado',
+        'user_id'
     ];
 
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function register()
+    {
+        return $this->hasMany(Register::class);
     }
 }

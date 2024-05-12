@@ -24,11 +24,16 @@ class Item extends Model
 
     public function wineries()
     {
-        return $this->belongsToMany(Winery::class)->withPivot('cantidad', 'fecha_vencimiento');
+        return $this->belongsToMany(Winery::class)->withPivot('cantidad', 'lot_id');
+    }
+
+    public function lots()
+    {
+        return $this->hasMany(Lot::class);
     }
 
     public function transfer_wineries()
     {
-        return $this->belongsToMany(TransferWinery::class)->withPivot('cantidad', 'fecha_vencimiento');
+        return $this->belongsToMany(TransferWinery::class)->withPivot('cantidad', 'lot_id');
     }
 }

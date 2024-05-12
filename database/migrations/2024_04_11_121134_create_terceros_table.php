@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('providers', function (Blueprint $table) {
             $table->id();
-            $table->enum('tipo_documento', ['CC', 'CE', 'NIT', 'TI']);
+            $table->enum('tipo_documento', ['CC', 'CE', 'NIT', 'TI', 'PB']);
             $table->string('numero_documento', 20);
             $table->string('nombre_razonsocial', 30);
             $table->string('telefono', 10);
-            $table->string('correo', 30);
-            $table->string('direccion', 30);
-            $table->string('municipio', 30);
+            $table->string('correo', 30)->nullable();
+            $table->string('direccion', 30)->nullable();
+            $table->string('municipio', 30)->nullable();
             $table->boolean('responsable_iva')->default(1);
             $table->integer('company_id');
             $table->timestamps();
@@ -27,14 +27,13 @@ return new class extends Migration
 
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->enum('tipo_documento', ['CC', 'CE', 'NIT', 'TI']);
+            $table->enum('tipo_documento', ['CC', 'CE', 'NIT', 'TI', 'PB']);
             $table->string('numero_documento', 20);
             $table->string('nombre_razonsocial', 30);
             $table->string('telefono', 10);
-            $table->string('correo', 30);
-            $table->string('direccion', 30);
-            $table->string('municipio', 30);
-            $table->boolean('responsable_iva')->default(1);
+            $table->string('correo', 30)->nullable();
+            $table->string('direccion', 30)->nullable();
+            $table->string('municipio', 30)->nullable();
             $table->integer('company_id');
             $table->timestamps();
         });

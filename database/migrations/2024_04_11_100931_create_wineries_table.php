@@ -17,6 +17,16 @@ return new class extends Migration
             $table->string('nombre', 30);
             $table->string('descripcion', 50)->nullable();
             $table->string('ubicacion', 30);
+            $table->boolean('predeterminada')->default(false);
+            $table->timestamps();
+        });
+
+        Schema::create('lots', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('item_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->string('numero', 50);
+            $table->date('fecha_vencimiento');
+            $table->integer('company_id');
             $table->timestamps();
         });
 
@@ -25,7 +35,7 @@ return new class extends Migration
             $table->foreignId('winery_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('item_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->integer('cantidad');
-            $table->date('fecha_vencimiento')->nullable();
+            $table->foreignId('lot_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -35,6 +45,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('item_winery');
+        Schema::dropIfExists('lots');
         Schema::dropIfExists('wineries');
     }
 };

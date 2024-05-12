@@ -13,11 +13,22 @@ class TransferWinery extends Model
         'winery_origen_id',
         'winery_destino_id',
         'fecha',
+        'detalles',
         'company_id'
     ];
 
-    public function items()
+    public function transferItems()
     {
-        return $this->belongsToMany(Item::class)->withPivot('cantidad', 'fecha_vencimiento');
+        return $this->belongsToMany(Item::class)->withPivot('cantidad', 'lot_id');
+    }
+
+    public function origen()
+    {
+        return $this->belongsTo(Winery::class, 'winery_origen_id');
+    }
+
+    public function destino()
+    {
+        return $this->belongsTo(Winery::class, 'winery_destino_id');
     }
 }

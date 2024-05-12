@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('winery_origen_id');
             $table->integer('winery_destino_id');
             $table->date('fecha');
+            $table->string('detalles', 30)->nullable();
             $table->integer('company_id');
             $table->timestamps();
         });
@@ -25,7 +26,7 @@ return new class extends Migration
             $table->foreignId('transfer_winery_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('item_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->integer('cantidad');
-            $table->date('fecha_vencimiento')->nullable();
+            $table->integer('lot_id')->nullable();
         });
     }
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('fecha');
             $table->boolean('tipo');
             $table->string('detalles', 30)->nullable();
+            $table->decimal('total', 20, 2);
             $table->integer('company_id');
             $table->timestamps();
         });
@@ -26,7 +27,9 @@ return new class extends Migration
             $table->foreignId('movement_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('item_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->integer('cantidad');
-            $table->date('fecha_vencimiento')->nullable();
+            $table->decimal('costo_unitario', 20, 2);
+            $table->decimal('costo_total', 20, 2);
+            $table->integer('lot_id')->nullable();
         });
     }
 

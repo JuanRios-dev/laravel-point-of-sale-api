@@ -15,19 +15,21 @@ class AuthController extends Auth
             'email' => 'required|email',
             'password' => 'required',
         ]);
-    
+
         $user = User::where('email', $request->email)->first();
-    
+
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
-    
+
         $user->update(['ultima_conexion' => now()]);
         $token = $user->createToken('auth_token')->plainTextToken;
-    
+        $companies = $user->companies()->pluck('nombre','company_id')->toArray();
+
         return response()->json([
             'user' => $user,
             'token' => $token,
+            'companies' => $companies
         ], 200);
     }
 

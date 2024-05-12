@@ -13,7 +13,8 @@ class Winery extends Model
         'company_id',
         'nombre',
         'descripcion',
-        'ubicacion'
+        'ubicacion',
+        'predeterminada'
     ];
 
     public function company()
@@ -23,11 +24,16 @@ class Winery extends Model
 
     public function items()
     {
-        return $this->belongsToMany(Item::class)->withPivot('cantidad', 'fecha_vencimiento');
+        return $this->belongsToMany(Item::class)->withPivot('cantidad', 'lot_id');
+    }
+
+    public function lots()
+    {
+        return $this->belongsToMany(Item::class)->withPivot('cantidad', 'item_id', 'lot_id');
     }
 
     public function movements()
     {
-        return $this->belongsToMany(Movement::class)->withPivot('cantidad', 'fecha_vencimiento');
+        return $this->belongsToMany(Movement::class)->withPivot('cantidad', 'costo_unitario', 'costo_total', 'lot');
     }
 }

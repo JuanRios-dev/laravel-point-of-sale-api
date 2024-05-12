@@ -14,11 +14,19 @@ class Movement extends Model
         'fecha',
         'tipo',
         'detalles',
+        'total',
         'company_id'
     ];
 
-    public function wineries()
+    public function winery()
     {
-        return $this->belongsToMany(Winery::class)->withPivot('cantidad', 'fecha_vencimiento');
+        return $this->belongsTo(Winery::class, 'winery_id');
+    }
+
+
+    public function items()
+    {
+        return $this->belongsToMany(Item::class)
+            ->withPivot('cantidad', 'costo_unitario', 'costo_total', 'lot_id');
     }
 }

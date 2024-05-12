@@ -17,7 +17,6 @@ class Customer extends Model
         'correo',
         'direccion',
         'municipio',
-        'responsable_iva',
         'company_id'
     ];
 }
