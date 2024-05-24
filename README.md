@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/JuanRios-dev/laravel-point-of-sale-api/raw/develop/public/captura.png" width="200" alt="Your Project Logo">
+  <img src="https://github.com/JuanRios-dev/laravel-point-of-sale-api/blob/develop/public/Captura.png" width="200" alt="Your Project Logo">
 </p>
 
 <h1 align="center">Sistema de Punto de Venta (POS)</h1>
